@@ -110,9 +110,6 @@ This section deals with aggregating the figures to give a quantitative measure t
 library(plyr)
 ```
 
-```
-## Warning: package 'plyr' was built under R version 3.3.1
-```
 
 ```r
 aggr <- ddply(reduced, "EVTYPE", summarise, Fatalities = sum(FATALITIES), Injuries = sum(INJURIES), Property = sum(PROPERTY), Crop = sum(CROP), Total = sum(TOTALDMG))
@@ -187,9 +184,6 @@ Given is a plot depicting the effect of these disasters on the human population
 library(ggplot2)
 ```
 
-```
-## Warning: package 'ggplot2' was built under R version 3.3.1
-```
 
 ```r
 temp1 <- population[,c(1,2)]
@@ -209,7 +203,7 @@ g <- g + ggtitle("Effect of Disasters on Population")
 print(g)
 ```
 
-![](Plots/plot1.png)<!-- -->
+![](Plots/plot1.png)
 
 Here is a plot depicting how badly such disasters affect the economy.
 
@@ -232,6 +226,6 @@ g <- g + ggtitle("Effect of Disasters on Economy")
 print(g)
 ```
 
-![](Plots/plot2.png)<!-- -->
+![](Plots/plot2.png)
 
 
