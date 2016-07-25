@@ -209,7 +209,7 @@ g <- g + ggtitle("Effect of Disasters on Population")
 print(g)
 ```
 
-![](Plot/plot1.png)<!-- -->
+![](Plots/plot1.png)<!-- -->
 
 Here is a plot depicting how badly such disasters affect the economy.
 
@@ -232,6 +232,6 @@ g <- g + ggtitle("Effect of Disasters on Economy")
 print(g)
 ```
 
-![](Plot/plot2.png)<!-- -->
+![](Plots/plot2.png)<!-- -->
 
 
