@@ -5,8 +5,13 @@
 ## ------------------------------------------------------------------
 ## Loading Data
 ## ------------------------------------------------------------------
+library(R.utils)
 setwd("~/Reproducible-Research-Assignment-2-Coursera/")
-data <- read.csv("repdata%2Fdata%2FStormData.csv")
+if(!file.exists("stormdata.csv.bz2")){
+  download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2", destfile = "~/Reproducible-Research-Assignment-2-Coursera/stormdata.csv.bz2")
+}
+bunzip2("stormdata.csv.bz2", "storm.csv", remove = FALSE)
+data <- read.csv("storm.csv")
 
 ## ------------------------------------------------------------------
 ## Data Processing

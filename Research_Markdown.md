@@ -1,16 +1,21 @@
 # Effect of Severe Weather Events on Ecomomy
-
 ## Synopsis
 
 Storms and other severe weather events can cause both public health and economic problems for communities and municipalities. Many severe events can result in fatalities, injuries, and property damage, and preventing such outcomes to the extent possible is a key concern. The basic aim of this analysis is to explore which type of events are most harmful for the human population in terms of casualities as well as to the economy in terms of damage and destruction they bring along. The document is divided into sections to make the analysis more readable and easy to understand. Sections include information on how data has been transformed and then aggregated to finally reach the quantitative figures depicting the catastrophy these disasters bring to the humans as well as to the property.
 
 ## Data Processing
 
-Downloading the source file to have the original .csv file in the working directory.
+Downloading the dataset and unzipping to obtain the original .csv file.
 
 
 ```r
-data <- read.csv("repdata%2Fdata%2FStormData.csv")
+library(R.utils)
+setwd("~/Reproducible-Research-Assignment-2-Coursera/")
+if(!file.exists("stormdata.csv.bz2")){
+  download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2", destfile = "~/Reproducible-Research-Assignment-2-Coursera/stormdata.csv.bz2")
+  }
+bunzip2("stormdata.csv.bz2", "storm.csv", remove = FALSE)
+data <- read.csv("storm.csv")
 ```
 
 Subsetting the original data to have only the columns to be used in the analysis
@@ -108,10 +113,6 @@ This section deals with aggregating the figures to give a quantitative measure t
 
 ```r
 library(plyr)
-```
-
-
-```r
 aggr <- ddply(reduced, "EVTYPE", summarise, Fatalities = sum(FATALITIES), Injuries = sum(INJURIES), Property = sum(PROPERTY), Crop = sum(CROP), Total = sum(TOTALDMG))
 
 population <- aggr[c(1,2,3)]
@@ -182,10 +183,6 @@ Given is a plot depicting the effect of these disasters on the human population
 
 ```r
 library(ggplot2)
-```
-
-
-```r
 temp1 <- population[,c(1,2)]
 temp1$Type <- "Fatalities"
 temp2 <- population[,c(1,3)]

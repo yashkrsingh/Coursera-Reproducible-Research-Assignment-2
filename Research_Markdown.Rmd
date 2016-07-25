@@ -4,17 +4,22 @@ output:
   html_document: 
     keep_md: yes
 ---
-
 ## Synopsis
 
 Storms and other severe weather events can cause both public health and economic problems for communities and municipalities. Many severe events can result in fatalities, injuries, and property damage, and preventing such outcomes to the extent possible is a key concern. The basic aim of this analysis is to explore which type of events are most harmful for the human population in terms of casualities as well as to the economy in terms of damage and destruction they bring along. The document is divided into sections to make the analysis more readable and easy to understand. Sections include information on how data has been transformed and then aggregated to finally reach the quantitative figures depicting the catastrophy these disasters bring to the humans as well as to the property.
 
 ## Data Processing
 
-Downloading the source file to have the original .csv file in the working directory.
+Downloading the dataset and unzipping to obtain the original .csv file.
 
-```{r, cache=TRUE}
-data <- read.csv("repdata%2Fdata%2FStormData.csv")
+```{r, cache=TRUE, warning=FALSE}
+library(R.utils)
+setwd("~/Reproducible-Research-Assignment-2-Coursera/")
+if(!file.exists("stormdata.csv.bz2")){
+  download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2", destfile = "~/Reproducible-Research-Assignment-2-Coursera/stormdata.csv.bz2")
+  }
+bunzip2("stormdata.csv.bz2", "storm.csv", remove = FALSE)
+data <- read.csv("storm.csv")
 
 ```
 
